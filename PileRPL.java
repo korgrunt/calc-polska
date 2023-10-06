@@ -1,68 +1,81 @@
 import java.lang.*;
+import java.io.*;
+
 
 class PileRPL {
 
-    ObjEmp[] stack;
-    int maxSize;
-
+    private ObjEmp[] stack;
+    private int nbObj;
+    private final static int DEFAULT_MAX_SIZE = 42;
+    
     public PileRPL(int maxSize){
-        this.maxSize = maxSize;
-        this.stack = new ObjEmp[this.maxSize];
-        
+        this.stack = new ObjEmp[maxSize];
+        this.nbObj = 0;
     }
 
-
-    public void push(ObjEmp e){
-
-
+    public PileRPL(){
+        this(DEFAULT_MAX_SIZE);
     }
+
+    public void add(){
+
+      if(this.nbObj < 2){
+        System.out.println("Cannot add, not enough object in stack");
+      } else {
+
+        ObjEmp obj1 = this.pop();  
+        ObjEmp obj2 = this.pop();  
+        this.push(obj1.add(obj2));
+      }
+    }
+
+    public ObjEmp pop(){
+
+        ObjEmp obj;
+        if(this.nbObj <= 0){
+            System.out.println("CANNOT POP, nbOBJ is" + this.nbObj);
+            obj = null;
+        } else {
+            obj = this.stack[this.nbObj -1];
+            this.nbObj--;
+        }
+        return obj;
+    }
+
 
     public int getSize(){
         return this.stack.length;
     }
 
     public int getCount(){
-        int count = 0;
-        while(count < this.stack.length) {
-            
-            System.out.println("elm number " + count + "in stack is equal => below");
-            System.out.println(this.stack[count]);
-
-            if(this.stack[count] == null){
-                return count;
-            }
-            count++;
-        }
-        return 2;
+        return this.nbObj;
     }
 
+    public void push(ObjEmp objEmp){
 
-
-    public void add(){
-
-        if(this.stack.length == this.maxSize){
-            System.out.println("Stack is full, cannot add.");
-            return;
+        if(this.nbObj == this.stack.length){
+            System.out.println("Stack is full, cannot push.");
         }
-
-        return;
-
-    
         
+        this.stack[this.nbObj] = objEmp;
+        this.nbObj++;
+        return;
     }
 
 
     public String toString(){
 
-        if(this.stack.length == 0){
+        if(this.nbObj == 0){
             return "PileRPL is empty";
         }
-        String str = "";
-        for (int i = 0; i < this.stack.length; i++) {
-            str += this.stack[i];
+        String str = "PileRpl count<"+ this.nbObj +"> and containe( ";
+        for (int i = 0; i < this.nbObj; i++) {
+            if( this.stack[i] != null ) {
+                str += " ";
+                str += this.stack[i];
+            }
         }
-        return str;
+        return str + " )";
     }
-
 
 }
