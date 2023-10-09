@@ -2,12 +2,12 @@ import java.lang.*;
 import java.io.*;
 
 
-class PileRPL {
+public class PileRPL {
 
     private ObjEmp[] stack;
     private int nbObj;
     private final static int DEFAULT_MAX_SIZE = 42;
-    
+
     public PileRPL(int maxSize){
         this.stack = new ObjEmp[maxSize];
         this.nbObj = 0;
@@ -19,14 +19,14 @@ class PileRPL {
 
     public void add(){
 
-      if(this.nbObj < 2){
-        System.out.println("Cannot add, not enough object in stack");
-      } else {
+        if(this.nbObj < 2){
+            System.out.println("Cannot add, not enough object in stack");
+        } else {
 
-        ObjEmp obj1 = this.pop();  
-        ObjEmp obj2 = this.pop();  
-        this.push(obj1.add(obj2));
-      }
+            ObjEmp obj1 = this.pop();  
+            ObjEmp obj2 = this.pop();  
+            this.push(obj1.add(obj2));
+        }
     }
 
     public ObjEmp pop(){
@@ -56,7 +56,7 @@ class PileRPL {
         if(this.nbObj == this.stack.length){
             System.out.println("Stack is full, cannot push.");
         }
-        
+
         this.stack[this.nbObj] = objEmp;
         this.nbObj++;
         return;
@@ -76,6 +76,38 @@ class PileRPL {
             }
         }
         return str + " )";
+    }
+
+    private int getLongestLengthObjEmp(){
+        int lengthLongestObj = 0;
+        for(int i = 0; i < this.nbObj; i++)
+            lengthLongestObj = this.stack[i].toString().length() > lengthLongestObj ? this.stack[i].toString().length() : lengthLongestObj;
+        return 10;
+    }
+
+    public void print(){
+
+        // print empty space in array
+        int lengthTabToPrint = this.getLongestLengthObjEmp();
+        String emptyArraySpace = "!";
+        for(int i = 0; i < lengthTabToPrint; i++){
+            emptyArraySpace += " ";
+        }
+        emptyArraySpace += "!";
+
+        // Print value and operator
+
+
+
+
+
+        // print tab enf line
+        String baseArrayLine = "+";
+        for(int i = 0; i < lengthTabToPrint; i++){
+            emptyArraySpace += "-";
+        }
+        emptyArraySpace += "+";
+
     }
 
 }

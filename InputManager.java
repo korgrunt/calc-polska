@@ -1,13 +1,11 @@
 import java.lang.*;
 import java.io.*;
 
-public class CalcUI {
+public class InputManager {
 
-    public static void main(String[] args)
+    public static (String[] args)
         throws IOException
         {
-            PileRPL rplStack = new PileRPL(20); 
-
 
             // Welcome message
             System.out.println("--- Welcome on Polska Calculator");
@@ -19,16 +17,15 @@ public class CalcUI {
             boolean programShouldStop = false;
             boolean isValidInput;
 
-            while(!programShouldStop){
+            while(programShouldStop){
                 // Scan input from console
                 String input = InputUtils.askUserInput();
                 // Check instruction is quit or not  
                 programShouldStop = InputUtils.isQuitInstruction(input);
                 // Use input
                 if(programShouldStop) break;
-                if(InputUtils.isValidInput(input)){                  
-                   //rplStack.push(input);
-                   rplStack.print();
+                if(isValidInput(input)){                  
+                    
                 } else {
                     System.out.println("--- Please, enter a valid input, should be an operator or a numeric value.");
                 }
@@ -43,3 +40,4 @@ public class CalcUI {
 
 
 }   
+
