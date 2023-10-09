@@ -2,7 +2,6 @@ import java.lang.*;
 
 class ObjEmp {
 
-
     private int a;
     private int b;
 
@@ -15,14 +14,30 @@ class ObjEmp {
 
 
     public ObjEmp add(ObjEmp obj){
-
         ObjEmp newObj = new ObjEmp(this.a + obj.getA(), this.b + obj.getB());
-        System.out.println(newObj);
         return newObj; 
-
     }
 
+    public ObjEmp substract(ObjEmp obj){
+        ObjEmp newObj = new ObjEmp(this.a - obj.getA(), this.b - obj.getB());
+        return newObj; 
+    }
 
+    public static ObjEmp parseInput(String str){
+        ObjEmp objEmp = null;
+
+        String[] numbers = str.split(" ");
+
+        if(numbers.length == 2){
+
+            int a = Integer.parseInt(numbers[0]);
+            int b = Integer.parseInt(numbers[1]);
+
+            objEmp = new ObjEmp(a, b);
+        }
+        System.out.println(objEmp);
+        return objEmp;
+    }
 
     public int getA(){
         return this.a;

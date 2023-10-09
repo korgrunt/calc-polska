@@ -15,7 +15,10 @@ public class InputUtils {
 
         if(IS_ONE_CHAR){
             for(String operator : AVAILABLE_OPERATOR){
-                if(input.equals(operator)) isOperator = true;
+                if(input.equals(operator)){
+                    isOperator = true;
+                    break;
+                }
             }
         }
 
@@ -23,12 +26,6 @@ public class InputUtils {
     }
 
     public static boolean isValue(String input){
-
-        return true;
-
-    }
-
-    public static boolean isValidInput(String input){
 
         return true;
 

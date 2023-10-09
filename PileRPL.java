@@ -25,7 +25,19 @@ public class PileRPL {
 
             ObjEmp obj1 = this.pop();  
             ObjEmp obj2 = this.pop();  
-            this.push(obj1.add(obj2));
+            this.push(obj2.add(obj1));
+        }
+    }
+
+    public void substract(){
+
+        if(this.nbObj < 2){
+            System.out.println("Cannot substract, not enough object in stack");
+        } else {
+
+            ObjEmp obj1 = this.pop();  
+            ObjEmp obj2 = this.pop();  
+            this.push(obj1.substract(obj2));
         }
     }
 
@@ -85,29 +97,28 @@ public class PileRPL {
         return 10;
     }
 
-    public void print(){
+    public void printStack(){
 
         // print empty space in array
         int lengthTabToPrint = this.getLongestLengthObjEmp();
-        String emptyArraySpace = "!";
-        for(int i = 0; i < lengthTabToPrint; i++){
-            emptyArraySpace += " ";
-        }
-        emptyArraySpace += "!";
+        System.out.println("            ");
+        System.out.println("+----------+");
+        System.out.println("!          !");
+        
 
         // Print value and operator
 
-
-
-
+        for(int i = 0; i < this.nbObj; i++){
+            
+            String stringValue = this.stack[i].getA() + " " + this.stack[i].getB(); 
+            String stringPadding = "";
+            for(int a = 0; a < 10 - stringValue.length(); a++) stringPadding += " ";
+            System.out.println("!" + stringValue + stringPadding + "!");
+        }
 
         // print tab enf line
-        String baseArrayLine = "+";
-        for(int i = 0; i < lengthTabToPrint; i++){
-            emptyArraySpace += "-";
-        }
-        emptyArraySpace += "+";
 
+        System.out.println("+----------+");
     }
 
 }

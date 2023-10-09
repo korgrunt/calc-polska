@@ -10,10 +10,10 @@ public class CalcUI {
 
 
             // Welcome message
-            System.out.println("--- Welcome on Polska Calculator");
+            System.out.println("---- Welcome on Polska Calculator");
             System.out.println("--- You can use 0,1,2,3,4,5,6,7,8,9,+,-,*,/");
-            System.out.println("--- You know how polska calculator work");
-            System.out.println("--- For quite the program, simply enter 'quit' and press Enter");
+            System.out.println("-- You know how polska calculator work");
+            System.out.println("- For quite the program, simply enter 'quit' and press Enter");
 
             // If user enter "quit", this passing to false and while will stop and finish program
             boolean programShouldStop = false;
@@ -24,14 +24,37 @@ public class CalcUI {
                 String input = InputUtils.askUserInput();
                 // Check instruction is quit or not  
                 programShouldStop = InputUtils.isQuitInstruction(input);
-                // Use input
                 if(programShouldStop) break;
-                if(InputUtils.isValidInput(input)){                  
-                   //rplStack.push(input);
-                   rplStack.print();
+
+                // Use input
+                final ObjEmp objectEmp = ObjEmp.parseInput(input) ;
+                if(objectEmp != null){                  
+                    rplStack.push(objectEmp);
+                } else if (InputUtils.isOperator(input)) {
+
+                    switch (input) {
+                        case "+":
+                            rplStack.add();
+                            break;
+                        case "-":
+                            rplStack.substract();
+                            break;
+                        case "/":
+                            System.out.println("Should divide");
+                            break;
+                        case "*":
+                            System.out.println("Should product");
+                            break;
+                    } 
+
+
                 } else {
-                    System.out.println("--- Please, enter a valid input, should be an operator or a numeric value.");
+                    System.out.println("-!-!- Please, enter a valid input, should be an operator or a numeric value.");
                 }
+
+                // Print stack
+                rplStack.printStack();
+                System.out.println("> Enter a value or an operato.");
             }
 
 
