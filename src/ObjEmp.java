@@ -1,3 +1,5 @@
+package src;
+
 import java.lang.*;
 
 class ObjEmp {
@@ -57,7 +59,7 @@ class ObjEmp {
 
     public String toString(){
 
-        return "{ObjEmp => a = "+this.a+", b = "+this.b+"}";
+        return "{src.ObjEmp => a = "+this.a+", b = "+this.b+"}";
 
     }
 

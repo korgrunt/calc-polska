@@ -1,5 +1,6 @@
+package src;
+
 import java.lang.*;
-import java.io.*;
 
 class FooCalcRPL {
 

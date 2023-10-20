@@ -1,6 +1,10 @@
+package src;
+
+import src.enums.CommandEnum;
 
 import java.lang.*;
 import java.io.*;
+import java.util.Arrays;
 
 
 public class InputUtils {
@@ -32,7 +36,28 @@ public class InputUtils {
     }
 
     public static boolean isQuitInstruction(String input){
-        return input.equals("quit");
+        return input.equalsIgnoreCase("quit") ||
+         input.equalsIgnoreCase("exit");
+    }
+
+    public static boolean isCommandInput(String value){
+        try {
+            CommandEnum.valueOf(value);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    public static boolean isValueInput(String value){
+        try
+        {
+            Integer.parseInt(value);
+            return true;
+        } catch (NumberFormatException ex)
+        {
+            return false;
+        }
     }
 
     public static String askUserInput() throws IOException {

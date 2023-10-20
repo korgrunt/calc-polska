@@ -1,6 +1,6 @@
-import java.lang.*;
-import java.io.*;
+package src;
 
+import java.lang.*;
 
 public class PileRPL {
 
@@ -37,7 +37,7 @@ public class PileRPL {
 
             ObjEmp obj1 = this.pop();  
             ObjEmp obj2 = this.pop();  
-            this.push(obj1.substract(obj2));
+            this.push(obj2.substract(obj1));
         }
     }
 
@@ -74,11 +74,11 @@ public class PileRPL {
         return;
     }
 
-
+/*
     public String toString(){
 
         if(this.nbObj == 0){
-            return "PileRPL is empty";
+            return "src.PileRPL is empty";
         }
         String str = "PileRpl count<"+ this.nbObj +"> and containe( ";
         for (int i = 0; i < this.nbObj; i++) {
@@ -89,7 +89,7 @@ public class PileRPL {
         }
         return str + " )";
     }
-
+*/
     private int getLongestLengthObjEmp(){
         int lengthLongestObj = 0;
         for(int i = 0; i < this.nbObj; i++)
@@ -97,28 +97,24 @@ public class PileRPL {
         return 10;
     }
 
-    public void printStack(){
-
+    public String toString(){
+        String str = "";
         // print empty space in array
-        int lengthTabToPrint = this.getLongestLengthObjEmp();
-        System.out.println("            ");
-        System.out.println("+----------+");
-        System.out.println("!          !");
+        str += "\n+----------+";
+        str += "\n!          !";
         
-
-        // Print value and operator
-
         for(int i = 0; i < this.nbObj; i++){
-            
-            String stringValue = this.stack[i].getA() + " " + this.stack[i].getB(); 
+
+            String strValue = this.stack[i].getA() + " " + this.stack[i].getB();
             String stringPadding = "";
-            for(int a = 0; a < 10 - stringValue.length(); a++) stringPadding += " ";
-            System.out.println("!" + stringValue + stringPadding + "!");
+            for(int a = 0; a < 10 - strValue.length(); a++) stringPadding += " ";
+            str += ("\n!" + strValue + stringPadding + "!");
         }
 
         // print tab enf line
 
-        System.out.println("+----------+");
+        str += ("\n+----------+");
+        return str;
     }
 
 }
