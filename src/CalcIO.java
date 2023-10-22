@@ -1,9 +1,7 @@
 package src;
 
 import src.io.StreamManager;
-import src.utils.InputUtils;
 import src.network.MultiConnectionServer;
-import java.io.*;
 
 public class CalcIO {
 
@@ -22,34 +20,14 @@ public class CalcIO {
             server.stopServer();
         }
 
-        boolean loop = true;
+        /*
+         LOCAL LOOP START
+         */
+        calcEngine.loopCalc(localStreamManager, calcEngine.getGlobalRplStack());
+        /*
+         LOCAL LOOP END
+         */
 
-        // LOCAL LOOP START
-        while (loop) {
-
-            String inputCurrentLineLocal = "";
-
-            // Read line from local context
-            BufferedReader reader = new BufferedReader(new InputStreamReader(localStreamManager.getIn()));
-            try {
-                inputCurrentLineLocal = reader.readLine();
-            } catch (IOException e) {
-                localStreamManager.getOutUser().println("Error when read line of inputStream");
-                throw new RuntimeException(e);
-            }
-
-            // Parse local command and execute
-            inputCurrentLineLocal = InputUtils.parseAndExecuteNextCommand(inputCurrentLineLocal, calcEngine.getGlobalRplStack(), localStreamManager);
-
-            localStreamManager.print(calcEngine.getGlobalRplStack().toString());
-
-            if(inputCurrentLineLocal == "exit") {
-                localStreamManager.endProgramMessage();
-                if(server.isAlive()) server.stopServer();
-                loop = false;
-            } else {
-                localStreamManager.getOutUser().println("> Enter a value or an operato.");
-            }
-        }
+        if(server.isAlive()) server.stopServer();
     }
 }

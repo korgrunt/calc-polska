@@ -39,7 +39,7 @@ public class MultiConnectionServer extends Thread{
                     ClientHandlerThreaded client = new ClientHandlerThreaded(clientSocket, calcEngine);
                     client.start();
                 } catch (IOException e) {
-                    System.out.println("Error when open socket");
+                    this.stopServer();
                 }
             }
         }
