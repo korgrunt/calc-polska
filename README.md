@@ -1,9 +1,8 @@
 # calc-polska
 calculatrice a notation pôlonaise invers
 
-
 # Compile and run 
-javac -d target src/**/*.java && java -cp target src.CalcUI
+javac -d target src/**/*.java && java -cp target src.Application
 
 # Specification
 Mode of use
@@ -41,3 +40,7 @@ INIT FULL LOCAL, INIT FULL REMOTE, INIT REPLAY LOCAL, INIT REPLAY REMOTE
 
 pas de break dans les boucle( seulement dans un switch)
 
+// TODO: 
+
+mod log et mode replay 
+HTTP server if projet C is finish
