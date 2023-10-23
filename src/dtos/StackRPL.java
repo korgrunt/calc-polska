@@ -9,7 +9,7 @@ public class StackRPL {
 
 
 
-    PrintStream outputUser = System.out;
+    private PrintStream outputUser;
     private Vector2[] stack;
     private int nbObj;
     private final static int DEFAULT_MAX_SIZE = 42;

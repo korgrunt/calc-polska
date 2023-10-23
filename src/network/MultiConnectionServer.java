@@ -62,7 +62,6 @@ public class MultiConnectionServer extends Thread{
         if(serverOpen && this.isAlive()) {
             serverOpen = false;
             try {
-
                 for(Socket openSocket : activeSocket){
                     openSocket.close();
                 }

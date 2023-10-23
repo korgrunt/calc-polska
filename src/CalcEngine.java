@@ -64,7 +64,7 @@ public class CalcEngine {
     public void loopCalc(StreamManager streamManager, StackRPL stackRPL){
         boolean loop = true;
         // this allow switching input while program run without restart it
-        this.inUserWhileLoop = streamManager.inUser;
+        this.inUserWhileLoop = streamManager.getInUser();
         this.previousLogModeEnum = this.logMode;
 
         BufferedReader entree = new BufferedReader(new InputStreamReader(inUserWhileLoop));;

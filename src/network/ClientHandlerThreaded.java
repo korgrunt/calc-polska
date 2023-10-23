@@ -35,7 +35,7 @@ class ClientHandlerThreaded extends Thread {
     public void handleConnection() {
 
         // shared or separate stack setted here
-        StackRPL stackRPL = calcEngine.getUserMode().toString().contains("REMOTE_SHARED") ? calcEngine.getGlobalRplStack() : new StackRPL(30, streamManager.getOutUser());
+        final StackRPL stackRPL = calcEngine.getUserMode().toString().contains("REMOTE_SHARED") ? calcEngine.getGlobalRplStack() : new StackRPL(30, streamManager.getOutUser());
 
         /*
          REMOTE LOOP START

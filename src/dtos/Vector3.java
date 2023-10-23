@@ -53,14 +53,6 @@ public class Vector3  {
         return this.b;
     }
 
-    public void setA(int a) {
-        this.a = a;
-    }
-
-    public void setB(int b) {
-        this.b = b;
-    }
-
     public String toString() {
         return "{src.ObjEmp => a = " + this.a + ", b = " + this.b + ", c= " + this.c + "}";
     }

@@ -10,10 +10,10 @@ public class StreamManager {
 
 
     private final String logFileName = "./CALG_LOG.log";
-    public PrintStream outUser;
-    public BufferedWriter outLog;
+    private final PrintStream outUser;
+    private BufferedWriter outLog;
 
-    public InputStream inUser;
+    private InputStream inUser;
 
     public String getLogFileName() {
         return logFileName;

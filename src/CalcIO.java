@@ -6,9 +6,9 @@ import src.network.MultiConnectionServer;
 public class CalcIO {
 
 
-    StreamManager localStreamManager = new StreamManager(System.out, System.in);
+    private final StreamManager localStreamManager = new StreamManager(System.out, System.in);
 
-    MultiConnectionServer server;
+    private MultiConnectionServer server;
 
     public CalcIO(CalcEngine calcEngine) {
 

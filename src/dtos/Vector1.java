@@ -27,9 +27,6 @@ public class Vector1 {
         return this.a;
     }
 
-    public void setA(int a){
-        this.a = a;
-    }
 
     public String toString(){
         return "{src.ObjEmp => a = "+this.a+" }";

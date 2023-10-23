@@ -8,13 +8,13 @@ public class Application {
     public static void main(String[] args)  {
 
         // Parse argument on program launch
-        UserModeEnum initialUserMode = UserModeEnum.parseArgToUserModeEnum(args);
-        LogModeEnum initialLogMode = LogModeEnum.parseArgToLogModeEnum(args);
+        final UserModeEnum initialUserMode = UserModeEnum.parseArgToUserModeEnum(args);
+        final LogModeEnum initialLogMode = LogModeEnum.parseArgToLogModeEnum(args);
 
         System.out.println(initialUserMode);
 
         // Create engine
-        CalcEngine engine = new CalcEngine(initialUserMode, initialLogMode);
+        final CalcEngine engine = new CalcEngine(initialUserMode, initialLogMode);
 
         // Create IO and provide engine, local and remote user now allowed to interact
         new CalcIO(engine);
