@@ -1,26 +1,38 @@
 package src.dtos;
 
+import java.io.PrintStream;
 import java.lang.*;
+
+import static src.constants.MessageConstants.*;
 
 public class StackRPL {
 
+
+
+    PrintStream outputUser = System.out;
     private Vector2[] stack;
     private int nbObj;
     private final static int DEFAULT_MAX_SIZE = 42;
 
-    public StackRPL(int maxSize){
+    public StackRPL(int maxSize, PrintStream outputUser){
         this.stack = new Vector2[maxSize];
         this.nbObj = 0;
+        this.outputUser = outputUser;
     }
 
     public StackRPL(){
-        this(DEFAULT_MAX_SIZE);
+        this(DEFAULT_MAX_SIZE, System.out);
+    }
+
+
+    public void setOutputUser(PrintStream outputUser) {
+        this.outputUser = outputUser;
     }
 
     public void add(){
 
         if(this.nbObj < 2){
-            System.out.println("Cannot add, not enough object in stack");
+            outputUser.println(CANT_ADD);
         } else {
 
             Vector2 obj1 = this.pop();
@@ -32,7 +44,7 @@ public class StackRPL {
     public void substract(){
 
         if(this.nbObj < 2){
-            System.out.println("Cannot substract, not enough object in stack");
+            outputUser.println(CANT_SUB);
         } else {
 
             Vector2 obj1 = this.pop();
@@ -44,7 +56,7 @@ public class StackRPL {
     public void divide(){
 
         if(this.nbObj < 2){
-            System.out.println("Cannot substract, not enough object in stack");
+            outputUser.println(CANT_DIV);
         } else {
 
             Vector2 obj1 = this.pop();
@@ -56,7 +68,7 @@ public class StackRPL {
     public void multiply(){
 
         if(this.nbObj < 2){
-            System.out.println("Cannot substract, not enough object in stack");
+            outputUser.println(CANT_MUL);
         } else {
 
             Vector2 obj1 = this.pop();
@@ -69,7 +81,7 @@ public class StackRPL {
 
         Vector2 obj;
         if(this.nbObj <= 0){
-            System.out.println("CANNOT POP, nbOBJ is" + this.nbObj);
+            outputUser.println(String.format(CANT_POP, this.nbObj));
             obj = null;
         } else {
             obj = this.stack[this.nbObj -1];
@@ -82,7 +94,7 @@ public class StackRPL {
     public void push(Vector2 objEmp){
 
         if(this.nbObj == this.stack.length){
-            System.out.println("Stack is full, cannot push.");
+            outputUser.println(CANT_PUSH);
         }
 
         this.stack[this.nbObj] = objEmp;

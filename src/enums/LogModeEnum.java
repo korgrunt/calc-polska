@@ -1,5 +1,7 @@
 package src.enums;
 
+import static src.constants.MessageConstants.INVALID_LOG_MODE;
+
 public enum LogModeEnum {
     LOG,
     REPLAY,
@@ -31,7 +33,7 @@ public enum LogModeEnum {
         }
 
         if (initialMode == LogModeEnum.UNKNOW) {
-            System.out.println("\n---- Invalid logMode provided, get (" + initialMode + ").Please, set argument for logMode as valid. exemple: --user=(" + LogModeEnum.valuesAsString() + ").");
+            System.out.println(String.format(INVALID_LOG_MODE, initialMode, LogModeEnum.valuesAsString()));
         }
         return initialMode;
     }

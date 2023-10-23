@@ -1,11 +1,15 @@
 package src.enums;
 
+import static src.constants.MessageConstants.INVALID_USER_MODE;
+
 public enum UserModeEnum {
     LOCAL,
     LOCAL_LOGGED,
     REPLAY_LOG,
     REMOTE_SHARED_STACK,
     REMOTE_NOT_SHARED_STACK,
+    USERS_REMOTE_SHARED_STACK,
+    USERS_REMOTE_NOT_SHARED_STACK,
     UNKNOW;
 
     public static String valuesAsString() {
@@ -32,7 +36,7 @@ public enum UserModeEnum {
         }
 
         if (initialMode == UserModeEnum.UNKNOW) {
-            System.out.println("\n---- Invalid mode provided, get (" + initialMode + ").Please, set argument for mode as valid. exemple: --user=(" + UserModeEnum.valuesAsString() + ").");
+            System.out.println(String.format(INVALID_USER_MODE, initialMode, UserModeEnum.valuesAsString()));
         }
         return initialMode;
     }

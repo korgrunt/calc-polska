@@ -27,7 +27,6 @@ public class CalcIO {
         /*
          LOCAL LOOP END
          */
-
         server.stopServer();
         localStreamManager.closeLogFile();
     }

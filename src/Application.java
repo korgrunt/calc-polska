@@ -11,11 +11,12 @@ public class Application {
         UserModeEnum initialUserMode = UserModeEnum.parseArgToUserModeEnum(args);
         LogModeEnum initialLogMode = LogModeEnum.parseArgToLogModeEnum(args);
 
+        System.out.println(initialUserMode);
+
         // Create engine
         CalcEngine engine = new CalcEngine(initialUserMode, initialLogMode);
 
         // Create IO and provide engine, local and remote user now allowed to interact
         new CalcIO(engine);
-
     }
 }

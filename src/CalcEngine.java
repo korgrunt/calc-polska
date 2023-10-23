@@ -10,16 +10,17 @@ import src.io.StreamManager;
 import java.io.*;
 import java.util.regex.Matcher;
 
+import static src.constants.MessageConstants.*;
+
 public class CalcEngine {
 
-
-    private final StackRPL globalRplStack = new StackRPL(50);
+    private final StackRPL globalRplStack = new StackRPL(50, System.out);
 
     private UserModeEnum userMode;
     private LogModeEnum logMode;
 
     private InputStream inUserWhileLoop;
-    private LogModeEnum previousLogModeEnum;
+    private LogModeEnum previousLogModeEnum;// Todo allow switch mode on fly
     public CalcEngine(UserModeEnum initialUserMode, LogModeEnum initialLogMode) {
         this.userMode = initialUserMode;
         this.logMode = initialLogMode;
@@ -28,6 +29,7 @@ public class CalcEngine {
     /*
     GETTERS AND SETTERS
      */
+
     public UserModeEnum getUserMode() {
         return userMode;
     }
@@ -47,7 +49,7 @@ public class CalcEngine {
             try {
                 this.inUserWhileLoop = new DataInputStream(new FileInputStream(streamManager.getLogFileName()));
             } catch (FileNotFoundException e) {
-                streamManager.getOutUser().println("Can't open file");
+                streamManager.getOutUser().println(ERROR_FILE_OPEN);
                 throw new RuntimeException(e);
             }
             inputHasChanged = true;
@@ -81,8 +83,8 @@ public class CalcEngine {
             try {
                 inputCurrentLineLocal = entree.readLine();
             } catch (IOException e) {
-                streamManager.getOutUser().println("Error when read line of inputStream");
-                throw new RuntimeException(e);
+                streamManager.getOutUser().println(ERROR_READ_INPUTSTREAM);
+                inputCurrentLineLocal = "exit";
             }
             // LOG if log mode is active (don't log exit for allow user to use programme after ll replay
             if(LogModeEnum.LOG.equals(logMode) && !inputCurrentLineLocal.equals("exit")) streamManager.logCommand(inputCurrentLineLocal);
@@ -96,7 +98,7 @@ public class CalcEngine {
                     streamManager.endProgramMessage();
                     loop = false;
                 } else {
-                    streamManager.getOutUser().println("> Enter a value or an operato.");
+                    streamManager.getOutUser().println(ASK_ENTER_VAL_OR_CMD);
                 }
             } else {
                 this.logMode = LogModeEnum.NO_LOG;
@@ -175,7 +177,7 @@ public class CalcEngine {
         }
 
         if(!commandIsParsed && nextCommandsLineReader.length() > 1){
-            outputUser.println("unknow command, impossible to parse it, please enter a valid command and value");
+            outputUser.println(UNKNOW_COMMAND);
             nextCommandsLineReader = lineRead.substring(1);
         }
 
