@@ -14,7 +14,7 @@ public class CalcIO {
 
         this.server = new MultiConnectionServer(calcEngine);
 
-        if(calcEngine.getMode().toString().contains("REMOTE")){
+        if(calcEngine.getUserMode().toString().contains("REMOTE")){
             server.start();
         } else { // if mode is NOT remote close server if exist
             server.stopServer();
@@ -28,6 +28,7 @@ public class CalcIO {
          LOCAL LOOP END
          */
 
-        if(server.isAlive()) server.stopServer();
+        server.stopServer();
+        localStreamManager.closeLogFile();
     }
 }

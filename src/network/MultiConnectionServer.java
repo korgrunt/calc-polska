@@ -46,7 +46,7 @@ public class MultiConnectionServer extends Thread{
     }
 
     public void stopServer() {
-        if(serverOpen) {
+        if(serverOpen && this.isAlive()) {
             serverOpen = false;
             try {
                 serverSocket.close();

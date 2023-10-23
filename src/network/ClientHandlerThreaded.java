@@ -2,7 +2,7 @@ package src.network;
 
 import src.CalcEngine;
 import src.dtos.StackRPL;
-import src.enums.ModeEnum;
+import src.enums.UserModeEnum;
 import src.io.StreamManager;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ class ClientHandlerThreaded extends Thread {
     public void run() {
 
         // shared or separate stack setted here
-        StackRPL stackRPL = calcEngine.getMode().equals(ModeEnum.REMOTE_SHARED_STACK) ? calcEngine.getGlobalRplStack() : new StackRPL(30);
+        StackRPL stackRPL = calcEngine.getUserMode().equals(UserModeEnum.REMOTE_SHARED_STACK) ? calcEngine.getGlobalRplStack() : new StackRPL(30);
 
         /*
          REMOTE LOOP START

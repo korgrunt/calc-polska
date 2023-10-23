@@ -42,5 +42,7 @@ pas de break dans les boucle( seulement dans un switch)
 
 // TODO: 
 
-mod log et mode replay 
+
 HTTP server if projet C is finish
+Create constant class for all message
+allow change mode from command instead be forced to restart program
