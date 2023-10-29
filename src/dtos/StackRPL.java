@@ -10,12 +10,12 @@ public class StackRPL {
 
 
     private PrintStream outputUser;
-    private Vector2[] stack;
+    private Vector[] stack;
     private int nbObj;
     private final static int DEFAULT_MAX_SIZE = 42;
 
     public StackRPL(int maxSize, PrintStream outputUser){
-        this.stack = new Vector2[maxSize];
+        this.stack = new Vector[maxSize];
         this.nbObj = 0;
         this.outputUser = outputUser;
     }
@@ -35,8 +35,8 @@ public class StackRPL {
             outputUser.println(CANT_ADD);
         } else {
 
-            Vector2 obj1 = this.pop();
-            Vector2 obj2 = this.pop();
+            Vector obj1 = this.pop();
+            Vector obj2 = this.pop();
             this.push(obj2.add(obj1));
         }
     }
@@ -47,8 +47,8 @@ public class StackRPL {
             outputUser.println(CANT_SUB);
         } else {
 
-            Vector2 obj1 = this.pop();
-            Vector2 obj2 = this.pop();
+            Vector obj1 = this.pop();
+            Vector obj2 = this.pop();
             this.push(obj2.substract(obj1));
         }
     }
@@ -59,8 +59,8 @@ public class StackRPL {
             outputUser.println(CANT_DIV);
         } else {
 
-            Vector2 obj1 = this.pop();
-            Vector2 obj2 = this.pop();
+            Vector obj1 = this.pop();
+            Vector obj2 = this.pop();
             this.push(obj2.divide(obj1));
         }
     }
@@ -71,15 +71,15 @@ public class StackRPL {
             outputUser.println(CANT_MUL);
         } else {
 
-            Vector2 obj1 = this.pop();
-            Vector2 obj2 = this.pop();
+            Vector obj1 = this.pop();
+            Vector obj2 = this.pop();
             this.push(obj2.multiply(obj1));
         }
     }
 
-    public Vector2 pop(){
+    public Vector pop(){
 
-        Vector2 obj;
+        Vector obj;
         if(this.nbObj <= 0){
             outputUser.println(String.format(CANT_POP, this.nbObj));
             obj = null;
@@ -91,7 +91,7 @@ public class StackRPL {
     }
 
 
-    public void push(Vector2 objEmp){
+    public void push(Vector objEmp){
 
         if(this.nbObj == this.stack.length){
             outputUser.println(CANT_PUSH);
@@ -107,7 +107,7 @@ public class StackRPL {
         str += "\n!          !";
         
         for(int i = 0; i < this.nbObj; i++){
-            String strValue = this.stack[i].getA() + " " + this.stack[i].getB();
+            String strValue = this.stack[i].toString();
             String stringPadding = "";
             for(int a = 0; a < 10 - strValue.length(); a++) stringPadding += " ";
             str += ("\n!" + strValue + stringPadding + "!");
