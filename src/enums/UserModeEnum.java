@@ -4,8 +4,6 @@ import static src.constants.MessageConstants.INVALID_USER_MODE;
 
 public enum UserModeEnum {
     LOCAL,
-    LOCAL_LOGGED,
-    REPLAY_LOG,
     REMOTE_SHARED_STACK,
     REMOTE_NOT_SHARED_STACK,
     USERS_REMOTE_SHARED_STACK,

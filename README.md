@@ -6,33 +6,24 @@ javac -d target src/**/*.java && java -cp target src.Application
 
 # Specification
 Mode of use
---users remote default (argument) 
-from socket or other term
+java -cp target src.Application --user=<UerModeEnum> --log=<LogModeEnum>
+--log=<LOG | REPLAY | NO_LOG> (default NO_LOG)
+--user=<LOCAL | REMOTE_SHARED_STACK | REMOTE_NOT_SHARED_STACK | USERS_REMOTE_SHARED_STACK | USERS_REMOTE_NOT_SHARED_STACK> (default LOCAL)
 
---users remote shared  (argument)
-from socket or other ter
+exemple:
+javac -d target src/**/*.java && java -cp target src.Application --user=REMOTE_NOT_SHARED_STACK --log=LOG
 
---users remote not shared r (argument)
-from socket or other ter
+Information: 
 
---user local  (argument)
-from socket or other ter
+--log=LOG 
+Will log all action in a log.txt file
+Al log are shared, if a remote user do anything on the stack and a local user do another thing, it will be impossible to 
+differenciate action from remote user from action of local user.
 
---user log -> log.txt pour logé les operation
---user replay log.txt pour rejouer les operation depuis un fichier de log
 
+
+$$$$$$$$$
 HTTP pour interagir via rowser web
-
-sans parametre, local sans log
-
-add (need at  least two element in stakc)
-mult (need at  least two element in stakc)
-div  (need at  least two element in stakc)
-soust (need at  least two element in stakc)
-push x y
-just enter => push two last element of stack
-pop  (need at  least two element in stakc)
-quit/exit
 Allow change mode while running program (ex: start as etwork, switch session to local, then, reswith to network)
 un return par method,
 

@@ -6,6 +6,7 @@ import src.dtos.Vector;
 import src.enums.LogModeEnum;
 import src.enums.UserModeEnum;
 import src.io.StreamManager;
+import src.network.NetworkUtils;
 
 import java.io.*;
 import java.util.regex.Matcher;
@@ -69,21 +70,20 @@ public class CalcEngine {
         this.previousLogModeEnum = this.logMode;
 
         BufferedReader entree = new BufferedReader(new InputStreamReader(inUserWhileLoop));
-        ;
+
         while (loop) {
 
             String inputCurrentLineLocal = "";
 
 
-            boolean inputHasChanged = this.switchInputSourceIfNeed(streamManager);
+            inputCurrentLineLocal = NetworkUtils.isHttpEntry(streamManager.getInUser());
 
-            // Read line from input
-            if (inputHasChanged) {
-                entree = new BufferedReader(new InputStreamReader(inUserWhileLoop));
-            }
 
             try {
-                inputCurrentLineLocal = entree.readLine();
+                if(inputCurrentLineLocal == null){
+                    inputCurrentLineLocal = entree.readLine();
+                }
+
             } catch (IOException e) {
                 streamManager.getOutUser().println(ERROR_READ_INPUTSTREAM);
                 inputCurrentLineLocal = "exit";
